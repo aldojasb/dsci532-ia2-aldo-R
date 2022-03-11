@@ -7,8 +7,8 @@ library(plotly)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
-#penguins <- readr::read_csv('C:/Users/aldos/Documents/LESSONS/532/532-ai2-aldo-R/data/penguins.csv')
-penguins <- readr::read_csv(here::here('data', 'penguins.csv'))
+penguins <- readr::read_csv('C:/Users/aldos/Documents/LESSONS/532/532-ai2-aldo-R/data/penguins.csv')
+#penguins <- readr::read_csv(here::here('data', 'penguins.csv'))
 
 app$layout(
   dbcContainer(
@@ -19,7 +19,7 @@ app$layout(
         options = penguins %>%
           colnames() %>%
           purrr::map(function(col) list(label = col, value = col)), 
-        value='bodywt')
+        value='island')
     )
   )
 )
@@ -37,5 +37,5 @@ app$callback(
     ggplotly(p)
   }
 )
-
-app$run_server(host = '0.0.0.0')
+app$run_server(debug = T)
+#app$run_server(host = '0.0.0.0')

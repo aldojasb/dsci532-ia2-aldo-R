@@ -33,7 +33,6 @@ app$callback(
                             y = body_mass_g,
                             color = island)) +
       geom_point() +
-      scale_x_log10() +
       ggthemes::scale_color_tableau()
     ggplotly(p)
   }

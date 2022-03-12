@@ -1,9 +1,13 @@
 library(dash)
 library(dashCoreComponents)
 library(dashHtmlComponents)
-#library(dashBootstrapComponents)
 library(ggplot2)
-#library(plotly)
+library(readr)
+library(here)
+library(purrr)
+library(ggthemes)
+library(shiny)
+
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
@@ -20,7 +24,7 @@ app$layout(
         options = penguins %>%
           colnames() %>%
           purrr::map(function(col) list(label = col, value = col)), 
-        value='state')
+        value='max_temp')
     )
   )
 )

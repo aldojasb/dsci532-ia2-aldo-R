@@ -7,20 +7,20 @@ library(plotly)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
-#penguins <- readr::read_csv('C:/Users/aldos/Documents/LESSONS/532/532-ai2-aldo-R/data/penguins.csv')
+#penguins <- readr::read_csv('C:/Users/aldos/Documents/LESSONS/532/dsci532-ia2-aldo-R/data/us_counties_processed.csv')
 #head(penguins)
-penguins <- readr::read_csv(here::here('data', 'penguins.csv'))
+penguins <- readr::read_csv(here::here('data', 'us_counties_processed.csv'))
 
 app$layout(
   dbcContainer(
-    list(htmlH1('Penguin Dashr heroky deployment'),
+    list(htmlH1('MEAN TEMP Dashr heroky deployment'),
       dccGraph(id='plot-area'),
       dccDropdown(
         id='col-select',
         options = penguins %>%
           colnames() %>%
           purrr::map(function(col) list(label = col, value = col)), 
-        value='body_mass_g')
+        value='state')
     )
   )
 )
@@ -30,8 +30,8 @@ app$callback(
   list(input('col-select', 'value')),
   function(xcol) {
     p <- ggplot(penguins, aes(x = !!sym(xcol),
-                            y = body_mass_g,
-                            color = island)) +
+                            y = mean_temp,
+                            color = state)) +
       geom_point() +
       ggthemes::scale_color_tableau()
     ggplotly(p)

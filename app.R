@@ -1,9 +1,9 @@
 library(dash)
 library(dashCoreComponents)
 library(dashHtmlComponents)
-library(dashBootstrapComponents)
+#library(dashBootstrapComponents)
 library(ggplot2)
-library(plotly)
+#library(plotly)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
@@ -13,7 +13,7 @@ penguins <- readr::read_csv(here::here('data', 'us_counties_processed.csv'))
 
 app$layout(
   dbcContainer(
-    list(htmlH1('MEAN TEMP Dashr heroky deployment'),
+    list(htmlH1('Mean temperature chart - It takes around 1 HOUR to download the data. Please, be patience'),
       dccGraph(id='plot-area'),
       dccDropdown(
         id='col-select',

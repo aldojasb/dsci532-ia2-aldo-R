@@ -7,6 +7,7 @@ library(here)
 library(purrr)
 library(ggthemes)
 library(shiny)
+library(ggplotly)
 
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
